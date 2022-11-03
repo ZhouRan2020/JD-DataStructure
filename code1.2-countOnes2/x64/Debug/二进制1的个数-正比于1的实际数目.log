@@ -1,0 +1,3 @@
+﻿  源.cpp
+D:\CODE_CPPPL\JD-DataStructure\二进制1的个数-正比于1的实际数目\源.cpp(10,5): error C2086: 'int a[9]': redefinition
+D:\CODE_CPPPL\JD-DataStructure\二进制1的个数-正比于1的实际数目\源.cpp(9): message : see declaration of 'a'

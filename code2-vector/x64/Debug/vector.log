@@ -1,0 +1,3 @@
+﻿  源.cpp
+D:\CODE_CPPPL\JD-DataStructure\vector\标头.h(270,9): error C3861: 'sorted': identifier not found
+D:\CODE_CPPPL\JD-DataStructure\vector\标头.h(270,9): error C2065: 'sorted': undeclared identifier
