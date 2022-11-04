@@ -10,6 +10,5 @@ int sum(int* a,int low, int high) {
 }
 int main() {
 	int a[5] = { 1,2,3,4,5 };
-	int s = sum(a,0,4);
+	int res=sum(a,0,4);
 }
-#include <vector>

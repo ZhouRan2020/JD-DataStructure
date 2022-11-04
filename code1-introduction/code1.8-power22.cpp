@@ -1,17 +1,20 @@
-#include <vector>
-int sqrt(int a) { return a * a; }
+/*20221104,zr*/
+/*definition for pow2()*/
 int pow2(int n) {
 	int power = 1;
 	int p = 2;
-	while (n > 0) {
+	while (n != 0) {
+		/*check for the last bit*/
 		if (n & 1) {
 			power *= p;
 		}
+		/*update for next turn*/
 		n >>= 1;
 		p *= p;
 	}
 	return power;
 }
+/*main() for test*/
 int main() {
-	int c = pow2(5);
+	int res = pow2(5);
 }

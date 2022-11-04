@@ -1,10 +1,13 @@
-int main() {
-	int n = 168;
-	int ones=0;
-	while (n > 0) {
-		n &= n - 1;
+/* definition of CountOnes2()*/
+int CountOnes2(int n){
+	int ones{0};
+	while(n!=0){
+		n&=n-1;
 		ones++;
 	}
+	return ones;
 }
-int a[9];
-int a[];
+/* main() for test*/
+int main(){
+	int res = CountOnes2(23);
+}

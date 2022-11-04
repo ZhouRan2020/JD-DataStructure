@@ -1,7 +1,11 @@
+/*20221104 by zr*/
+/*for rand()*/
 #include<cstdlib>
+/*for class Fib*/
+#include "Fib.h"
 typedef int Rank;
-constexpr auto DEFAULT_CAPACITY = 3;
-
+#define DEFAULT_CAPACITY 3
+/*code2.1 vector<>*/
 template < typename T > 
 class vector {
 protected:
@@ -23,17 +27,14 @@ protected:
 	void quickSort(Rank lo, Rank hi);
 	void heapSort(Rank lo, Rank hi);
 public:
-	//constructor
-	//一个3参数构造函数
+	/*constructor*/
 	vector(int c = DEFAULT_CAPACITY, int s = 0, T v = 0) {
 		_elem = new T[_capacity = c];  
 		for (_size = 0; _size < s; _elem[_size++] = v);
 	}
-	//
 	vector(T const* A, Rank lo, Rank hi) {
 		copyFrom(A, lo, hi);
 	}
-
 	vector(T const* A, Rank n) {
 		copyFrom(A, 0, n);
 	}
@@ -43,42 +44,35 @@ public:
 	vector(vector<T> const& v) {
 		copyFrom(v._elem, 0, v._size);
 	}
-	//destructor
+	/*destructor*/
 	~vector() { 
 		delete[] _elem; 
 	}
-	//read-only visit ADTs
+	/*read-only visit ADTs*/
 	Rank size() const {
 		return _size;
 	}
 	bool empty() const {
 		return !_size;
 	}
-	int disordered() const;
-
+	int disordered();
 	Rank find(T const& e) const {
 		return find(e, 0, static_cast<Rank>(_size));
 	}
 	Rank find(T const& e, Rank lo, Rank hi) const;
-
 	Rank search(T const& e) const {
 		return (0 >= size) ? -1 : search(e, static_cast<Rank>(0), static_cast<Rank>(_size));
 	}
-	
 	Rank search(T const& e, Rank lo, Rank hi) const {
 		return rand() % 2 ? binSearch(_elem, e, lo, hi) : fibSearch(_elem, e, lo, hi);
 	}
-
-	//writable visit ADTs
+	/*writable visit ADTs*/
 	T& operator[](Rank r) const;
 	vector<T>& operator=(vector<T> const&);
-
 	T remove(Rank r);
 	int remove(Rank lo, Rank hi);
-
 	Rank insert(Rank r, T const& e);
 	Rank insert(T const& e) { return insert(_size, e); }
-
 	void sort(Rank lo, Rank hi) {
 		switch (rand() % 5) {
 		case 1:
@@ -101,16 +95,17 @@ public:
 	void sort() { 
 		sort(0, _size); 
 	}
-
 	void unsort(Rank lo, Rank hi);
 	void unsort() { unsort(0, _size); }
-
 	int deduplicate();
 	int uniquify();
+	/*traverse*/
 	void traverse( void(*visit)(T&) );
 	template<typename VST> void traverse(VST&);
-};
+};/*vector<>*/
 
+
+/*code2.2 copyFrom()*/
 template<typename T>
 void vector<T>::copyFrom(T const* A, Rank lo, Rank hi) {
 	_elem = new T[_capacity = 2 * (hi - lo)];
@@ -119,16 +114,16 @@ void vector<T>::copyFrom(T const* A, Rank lo, Rank hi) {
 		_elem[_size++] = A[lo++];
 	}
 }
-
+/*code 2.3 assignment*/
 template<typename T>
 vector<T>& vector<T>::operator=(vector<T> const& v) {
-	if (_elem) {
-		delete[] _elem;
-		copyFrom(v._elem, 0, v.size());
-		return *this;
-	}
+	if (_elem) delete[] _elem;
+	copyFrom(v._elem, 0, v.size());
+	return *this;	
 }
 
+
+/*code 2.4 expand()*/
 template<typename T>
 void vector<T>::expand() {
 	if (_size < _capacity) {
@@ -144,7 +139,7 @@ void vector<T>::expand() {
 	}
 	delete[] oldElem;
 }
-
+/*code2.5 shrink()*/
 template<typename T>
 void vector<T>::shrink() {
 	if (_capacity < DEFAULT_CAPACITY << 1) {
@@ -160,12 +155,12 @@ void vector<T>::shrink() {
 	}
 	delete[] oldElem;
 }
-
+/*code2.6 reload operator[]*/
 template<typename T>
 T& vector<T>::operator[](Rank r) const {
 	return _elem[r];
 }
-
+/*code2.8 permute vector<> entirely*/
 template<typename T>
 void vector<T>::unsort(Rank lo, Rank hi) {
 	T* v = _elem + lo;
@@ -173,13 +168,13 @@ void vector<T>::unsort(Rank lo, Rank hi) {
 		swap(v[i - 1], v[ rand()%i ]);
 	}
 }
-
+/*code2.10 find(e) in a unsorted vector*/
 template<typename T>
 Rank vector<T>::find(T const& e, Rank lo, Rank hi) const {
 	while ((lo < hi--) && (e != _elem[hi]));
 	return hi;
 }
-
+/*code 2.11 insert(e) as Rank r*/
 template<typename T>
 Rank vector<T>::insert(Rank r, T const& e) {
 	expand();
@@ -190,7 +185,7 @@ Rank vector<T>::insert(Rank r, T const& e) {
 	++_size;
 	return r;
 }
-
+/*code 2.12 remove(lo,hi)*/
 template<typename T>
 int vector<T>::remove(Rank lo, Rank hi) {
 	if (lo == hi) return 0;
@@ -201,14 +196,14 @@ int vector<T>::remove(Rank lo, Rank hi) {
 	shrink();
 	return hi - lo;
 }
-
+/*code 2.13 remove Rank r*/
 template<typename T>
 T vector<T>::remove(Rank r) {
 	T e = _elem[r];
 	remove(r, r + 1);
 	return e;
 }
-
+/*code 2.14 deduplicate a unsorted vector*/
 template<typename T>
 int vector<T>::deduplicate() {
 	int oldSize = _size;
@@ -218,14 +213,14 @@ int vector<T>::deduplicate() {
 	}
 	return oldSize - _size;
 }
-
+/*code 2.15 traverse using function pointer*/
 template<typename T>
 void vector<T>::traverse(void (*visit)(T&)) {
 	for (int i = 0; i < _size; ++i) {
 		visit(_elem[i]);
 	}
 }
-
+/*code 2.15 traverse using functor*/
 template<typename T>
 template<typename VST>
 void vector<T>::traverse(VST& visit) {
@@ -233,9 +228,9 @@ void vector<T>::traverse(VST& visit) {
 		visit(_elem[i]);
 	}
 }
-
+/*code 2.17 return num of inverse pair*/
 template<typename T>
-int vector<T>::disordered() const {
+int vector<T>::disordered() {
 	int n = 0;
 	for (int i = 1; i < _size; i++) {
 		if (_elem[i - 1] > _elem[i]) {
@@ -244,7 +239,7 @@ int vector<T>::disordered() const {
 	}
 	return n;
 }
-
+/*code 2.19 uniquify() a sorted vector*/
 template<typename T>
 int vector<T>::uniquify() {
 	Rank i = 0, j = 0;
@@ -257,7 +252,7 @@ int vector<T>::uniquify() {
 	shrink();
 	return j - i;
 }
-
+/*code2.27 bubble()*/
 template<typename T>
 bool vector<T>::bubble(Rank lo, Rank hi) {
 	bool is_sorted = true;
@@ -267,9 +262,9 @@ bool vector<T>::bubble(Rank lo, Rank hi) {
 			swap(_elem[lo - 1], _elem[lo]);
 		}
 	}
-	return sorted;
+	return is_sorted;
 }
-
+/*code 2.29 merge()*/
 template<class T>
 void vector<T>::merge(Rank lo, Rank mi, Rank hi) {
 	T* A = _elem + lo;
@@ -288,7 +283,7 @@ void vector<T>::merge(Rank lo, Rank mi, Rank hi) {
 	}
 	delete[] B;
 }
-
+/*code 2.28 mergesort()*/
 template<class T>
 void vector<T>::mergeSort(Rank lo, Rank hi) {
 	if (hi - lo == 1) {
@@ -299,10 +294,27 @@ void vector<T>::mergeSort(Rank lo, Rank hi) {
 	mergeSort(mi, hi);
 	merge(lo, mi, hi);
 }
-
-
-
-
+/*code 2.24 binsearch() C*/
+template<typename T> 
+Rank binSearch(T* A, T const& e, Rank lo, Rank hi){
+	while(lo<hi){
+		Rank mi=(lo+hi)>>1;
+		(e<A[mi])?hi=mi:lo=mi+1;
+	}
+	return --lo;
+}
+/*code2.22 fibsearch*/
+template <typename T> Rank fibSearch(T*A, T const& e, Rank lo,Rank hi){
+	Fib fib(hi-lo);
+	while(lo<hi){
+		while(hi-lo<fib.get())fib.prev();
+		Rank mi=lo+fib.get()-1;
+		if (e<A[mi]) hi=mi;
+		else if(A[mi]<e)lo=mi+1;
+		else return mi;
+	}
+	return -1;
+}
 
 
 
