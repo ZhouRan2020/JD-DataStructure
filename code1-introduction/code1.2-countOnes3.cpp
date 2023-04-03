@@ -11,7 +11,3 @@ int countOnes3(unsigned int n) {
 	n = round(n, 4);
 	return n;
 }
-/*main() for test*/
-int main() {
-	int res = countOnes3(23);
-}

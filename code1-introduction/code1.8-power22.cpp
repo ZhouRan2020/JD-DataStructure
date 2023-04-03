@@ -1,6 +1,6 @@
 /*20221104,zr*/
 /*definition for pow2()*/
-int pow2(int n) {
+int pow22(int n) {
 	int power = 1;
 	int p = 2;
 	while (n != 0) {
@@ -13,8 +13,4 @@ int pow2(int n) {
 		p *= p;
 	}
 	return power;
-}
-/*main() for test*/
-int main() {
-	int res = pow2(5);
 }

@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\REPOS\JD-DataStructure\code1-introduction\code1.1-bubblesort.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\REPOS\JD-DataStructure\code1-introduction\code1.10-reverse.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\REPOS\JD-DataStructure\code1-introduction\code1.11-sum.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\REPOS\JD-DataStructure\code1-introduction\code1.13-fib.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\REPOS\JD-DataStructure\code1-introduction\code1.14-fib.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\REPOS\JD-DataStructure\code1-introduction\code1.2-countOnes1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\REPOS\JD-DataStructure\code1-introduction\code1.2-countOnes2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\REPOS\JD-DataStructure\code1-introduction\code1.2-countOnes3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\REPOS\JD-DataStructure\code1-introduction\code1.5-sum.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\REPOS\JD-DataStructure\code1-introduction\code1.7-reverse.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\REPOS\JD-DataStructure\code1-introduction\code1.8-power21.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\REPOS\JD-DataStructure\code1-introduction\code1.8-power22.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\REPOS\JD-DataStructure\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{FBABC5C8-2A55-3A22-A7F6-6712F6468D4F}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -3,7 +3,7 @@
 #include <vector>
 /*bubblesort function definition*/
 void bubblesort(std::vector<int>& v) { 
-	bool  sorted  {true} ;
+	bool  sorted;
  	auto  n = v.size();
 	/*while unsorted, keep on doing*/
 	do{
@@ -17,9 +17,4 @@ void bubblesort(std::vector<int>& v) {
 		}
 		--n;
 	}while(!sorted);
-}
-/*main() for test*/
-int main() {
-	std::vector<int> v {5,4,3,2,1}; 
-	bubblesort(v);
 }

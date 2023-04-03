@@ -1,14 +1,9 @@
-int sum(int* a,int low, int high) {
+int sum2(int* a,int low, int high) {
 	if (low == high) {
 		return a[low];
 	}
 	else {
 		int mid = (low + high) / 2;
-		return sum(a,low, mid) + sum(a,mid + 1, high);
+		return sum2(a,low, mid) + sum2(a,mid + 1, high);
 	}
-	
-}
-int main() {
-	int a[5] = { 1,2,3,4,5 };
-	int res=sum(a,0,4);
 }
